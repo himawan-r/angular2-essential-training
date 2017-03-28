@@ -9,3 +9,8 @@
   background: white;
   padding: 10px;
 }
+
+.close{
+  color: deepskyblue;
+  cursor: pointer;
+}

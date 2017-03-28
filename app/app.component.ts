@@ -14,6 +14,10 @@ export class AppComponent {
     this.selectedMediaItem = mediaItem;
   }
 
+  onMediaItemPopupClose(){
+    this.selectedMediaItem = null;
+  }
+
   firstMediaItem = {
     id: 1,
     name: "Firebug",

@@ -7,4 +7,14 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 })
 export class MediaItemPopupComponent {
   @Input() mediaItem;
+  @Output() close = new EventEmitter();
+
+  onClose() {
+    console.log("close");
+    this.close.emit();
+  }
+
+  isClosed() {
+    return this.mediaItem ? false : true;
+  }
 }

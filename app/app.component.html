@@ -12,5 +12,7 @@
     (delete)="onMediaItemDelete($event)"
     (preview)="onMediaItemPreview($event)"></mw-media-item>
 
-  <mw-media-item-popup [mediaItem]="selectedMediaItem"></mw-media-item-popup>
+  <mw-media-item-popup 
+    [mediaItem]="selectedMediaItem"
+    (close)="onMediaItemPopupClose()"></mw-media-item-popup>
 </section>
