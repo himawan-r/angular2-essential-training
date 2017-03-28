@@ -10,6 +10,10 @@ export class AppComponent {
     
   }
 
+  onMediaItemPreview(mediaItem) {
+    this.selectedMediaItem = mediaItem;
+  }
+
   firstMediaItem = {
     id: 1,
     name: "Firebug",
@@ -19,4 +23,16 @@ export class AppComponent {
     watchedOn: 1294166565384,
     isFavorite: false
   };
+
+  secondMediaItem = {
+    id: 2,
+    name: "The Ring",
+    medium: "Movie",
+    category: "Horror",
+    year: 2017,
+    watchedOn: 1294166565384,
+    isFavorite: false
+  };
+
+  selectedMediaItem = this.firstMediaItem;
 }

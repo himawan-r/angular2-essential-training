@@ -5,5 +5,12 @@
   </header>
   <mw-media-item 
     [mediaItem]="firstMediaItem"
-    (delete)="onMediaItemDelete($event)"></mw-media-item>
+    (delete)="onMediaItemDelete($event)"
+    (preview)="onMediaItemPreview($event)"></mw-media-item>
+  <mw-media-item 
+    [mediaItem]="secondMediaItem"
+    (delete)="onMediaItemDelete($event)"
+    (preview)="onMediaItemPreview($event)"></mw-media-item>
+
+  <mw-media-item-popup [mediaItem]="selectedMediaItem"></mw-media-item-popup>
 </section>
