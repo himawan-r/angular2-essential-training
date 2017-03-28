@@ -1,0 +1,10 @@
+import { Component, Input, Output, EventEmitter } from '@angular/core';
+
+@Component({
+  selector: 'mw-media-item-popup',
+  templateUrl : 'app/media-item-popup.component.html',
+  styleUrls: ['app/media-item-popup.component.css']
+})
+export class MediaItemPopupComponent {
+  @Input() mediaItem;
+}
