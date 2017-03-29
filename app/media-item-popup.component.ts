@@ -5,7 +5,7 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
   templateUrl : 'app/media-item-popup.component.html',
   styleUrls: ['app/media-item-popup.component.css']
 })
-export class MediaItemPopupComponent {
+export class MediaItemPopupComponent{
   @Input() mediaItem;
   @Output() close = new EventEmitter();
 
@@ -16,5 +16,9 @@ export class MediaItemPopupComponent {
 
   isClosed() {
     return this.mediaItem ? false : true;
+  }
+
+  getPosterList() {
+    return this.mediaItem && this.mediaItem.posters ? this.mediaItem.posters : [];
   }
 }

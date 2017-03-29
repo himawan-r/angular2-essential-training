@@ -6,37 +6,13 @@ import { Component } from '@angular/core';
   styleUrls: ['app/app.component.css']
 })
 export class AppComponent {
-  onMediaItemDelete(mediaItem) {
+    selectedMediaItem = null;
     
-  }
+    onMediaItemPreview(mediaItem) {
+      this.selectedMediaItem = mediaItem;
+    }
 
-  onMediaItemPreview(mediaItem) {
-    this.selectedMediaItem = mediaItem;
-  }
-
-  onMediaItemPopupClose(){
-    this.selectedMediaItem = null;
-  }
-
-  firstMediaItem = {
-    id: 1,
-    name: "Firebug",
-    medium: "Series",
-    category: "Science Fiction",
-    year: 2010,
-    watchedOn: 1294166565384,
-    isFavorite: false
-  };
-
-  secondMediaItem = {
-    id: 2,
-    name: "The Ring",
-    medium: "Movie",
-    category: "Horror",
-    year: 2017,
-    watchedOn: 1294166565384,
-    isFavorite: false
-  };
-
-  selectedMediaItem = this.firstMediaItem;
-}
+    onMediaItemPopupClose() {
+      this.selectedMediaItem = null;
+    }
+ }

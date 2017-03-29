@@ -3,11 +3,14 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
 import { MediaItemComponent } from './media-item.component';
+<<<<<<< HEAD
+import { MediaItemPopupComponent } from './media-item-popup.component';
+=======
 import { MediaItemListComponent } from './media-item-list.component';
 import { FavoriteDirective } from './favorite.directive';
 import { CategoryListPipe } from './category-list.pipe';
-import { MediaItemPopupComponent } from './media-item-popup.component';
-import { PosterSwitcherComponent } from './poster-switcher.component';
+import { MediaItemFormComponent } from './media-item-form.component';
+>>>>>>> 04_02b
 
 @NgModule({
   imports: [
@@ -16,11 +19,14 @@ import { PosterSwitcherComponent } from './poster-switcher.component';
   declarations: [
     AppComponent,
     MediaItemComponent,
+<<<<<<< HEAD
+    MediaItemPopupComponent
+=======
     MediaItemListComponent,
     FavoriteDirective,
     CategoryListPipe,
-    MediaItemPopupComponent,
-    PosterSwitcherComponent
+    MediaItemFormComponent
+>>>>>>> 04_02b
   ],
   bootstrap: [
     AppComponent
