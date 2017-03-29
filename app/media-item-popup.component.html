@@ -10,7 +10,7 @@
             <label>Name : {{ mediaItem ? mediaItem.name : "" }}</label>
           </div>
           <div>
-            <label>Watched : {{ mediaItem ? mediaItem.watchedOn : "" }}</label>
+            <label>Watched : {{ mediaItem ? (mediaItem.watchedOn | date: 'shortDate') : "" }}</label>
           </div>
           <div>
             <label>Category: {{ mediaItem ? mediaItem.category : "" }}</label>

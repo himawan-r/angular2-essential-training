@@ -12,8 +12,8 @@ export class PosterSwitcherComponent{
   @Output() prev = new EventEmitter();
   
   onPrev() {
-    var currentItem = _.find(this.posters, function(obj){
-        return obj.selected === true;
+    var currentItem = _.find(this.posters, function(obj: any){
+        return obj && obj.selected === true;
     });
     var currentIndex = this.posters.indexOf(currentItem);
     var prev = currentIndex - 1 < 0 ? this.posters.length - 1 : currentIndex - 1;
@@ -23,7 +23,7 @@ export class PosterSwitcherComponent{
   }
 
   onNext() {
-    var currentItem = _.find(this.posters, function(obj){
+    var currentItem = _.find(this.posters, function(obj: any){
         return obj.selected === true;
     });
     var currentIndex = this.posters.indexOf(currentItem);

@@ -1,6 +1,6 @@
 <div style="display:flex; flex-direction: row;">
   <div class="arrow-container">
-    <span class="arrow arrow-prev" (click)="onPrev()"></span>
+    <span class="arrow arrow-prev" (click)="onPrev()" *ngIf="posters && posters.length>1"></span>
   </div>
   <div style="flex-grow:1;">
     <div *ngFor="let poster of posters">
@@ -8,6 +8,6 @@
     </div>
   </div>
   <div class="arrow-container">
-    <span class="arrow arrow-next" (click)="onNext()"></span>
+    <span class="arrow arrow-next" (click)="onNext()" *ngIf="posters && posters.length>1"></span>
   </div>
 </div>
