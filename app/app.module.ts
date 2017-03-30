@@ -8,6 +8,7 @@ import { FavoriteDirective } from './favorite.directive';
 import { CategoryListPipe } from './category-list.pipe';
 import { MediaItemPopupComponent } from './media-item-popup.component';
 import { PosterSwitcherComponent } from './poster-switcher.component';
+import { FullSizeDirective } from './fullsize.directive';
 
 @NgModule({
   imports: [
@@ -20,7 +21,8 @@ import { PosterSwitcherComponent } from './poster-switcher.component';
     FavoriteDirective,
     CategoryListPipe,
     MediaItemPopupComponent,
-    PosterSwitcherComponent
+    PosterSwitcherComponent,
+    FullSizeDirective
   ],
   bootstrap: [
     AppComponent

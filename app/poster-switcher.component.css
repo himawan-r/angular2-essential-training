@@ -18,6 +18,11 @@
   display:block;
   margin:auto;
   width:50%;
+  transform: scale(0.5);
+}
+
+.full-size.full-size-hovering{
+  transform: scale(1);
 }
 
 .arrow-container{

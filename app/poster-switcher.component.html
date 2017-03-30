@@ -4,7 +4,9 @@
   </div>
   <div style="flex-grow:1;">
     <div *ngFor="let poster of posters">
-      <img *ngIf="poster.selected" class="movie-poster" src="{{ poster && poster.imgSrc ? poster.imgSrc : './media/comingsoon.png' }}"/>
+      <div *ngIf="poster.selected">
+        <img [mwFullSize]="poster.isAvailableFullSize" class="movie-poster" src="{{ poster && poster.imgSrc ? poster.imgSrc : './media/comingsoon.png' }}"/>
+      </div>
     </div>
   </div>
   <div class="arrow-container">
