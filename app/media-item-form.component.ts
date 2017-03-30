@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'mw-media-item-form',
@@ -7,10 +7,12 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
   styleUrls: ['app/media-item-form.component.css']
 })
 export class MediaItemFormComponent {
-  form;
+  form : FormGroup;
+  fb : FormBuilder;
 
   ngOnInit() {
-    this.form = new FormGroup({
+    this.fb = new FormBuilder();
+    this.form = this.fb.group({
       medium: new FormControl('Movies'),
       name: new FormControl('', Validators.compose([
         Validators.required,
@@ -18,7 +20,9 @@ export class MediaItemFormComponent {
       ])),
       category: new FormControl(''),
       year: new FormControl('', this.yearValidator),
-    });
+      watchedOn: new FormControl('', this.watchedOnValidator),
+      rating: new FormControl('')
+    }, {validator: this.requiredIfFirstFieldFilled('watchedOn', 'rating')});
   }
 
   yearValidator(control) {
@@ -32,6 +36,26 @@ export class MediaItemFormComponent {
       return null;
     } else {
       return { 'year': true };
+    }
+  }
+
+  watchedOnValidator(control) {
+    if(new Date(control.value) > new Date()){
+      return { 'watchedOn': true };
+    }else{
+      return null;
+    }
+  }
+
+  requiredIfFirstFieldFilled(watchedOnKey: string, ratingKey: string) {
+    return (group: FormGroup): {[key: string]: any} => {
+      let watchedOn = group.controls[watchedOnKey];
+      let rating = group.controls[ratingKey];
+      if (watchedOn.value !== "" && rating.value === "") {
+        return {
+          'watchedOnRequired': true
+        };
+      }
     }
   }
 
