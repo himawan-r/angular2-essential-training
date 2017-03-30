@@ -8,6 +8,9 @@ import { MediaItemListComponent } from './media-item-list.component';
 import { FavoriteDirective } from './favorite.directive';
 import { CategoryListPipe } from './category-list.pipe';
 import { MediaItemFormComponent } from './media-item-form.component';
+import { MediaItemPopupComponent } from './media-item-popup.component';
+import { PosterSwitcherComponent } from './poster-switcher.component';
+import { FullSizeDirective } from './fullsize.directive';
 
 @NgModule({
   imports: [
@@ -20,7 +23,10 @@ import { MediaItemFormComponent } from './media-item-form.component';
     MediaItemListComponent,
     FavoriteDirective,
     CategoryListPipe,
-    MediaItemFormComponent
+    MediaItemFormComponent,
+    MediaItemPopupComponent,
+    PosterSwitcherComponent,
+    FullSizeDirective
   ],
   bootstrap: [
     AppComponent
