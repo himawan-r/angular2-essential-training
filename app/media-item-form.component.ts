@@ -20,6 +20,11 @@ export class MediaItemFormComponent {
       ])),
       category: new FormControl(''),
       year: new FormControl('', this.yearValidator),
+      movieID: new FormControl('', Validators.compose([
+        Validators.minLength(10),
+        Validators.maxLength(12),
+        Validators.pattern('[\\w\\-\\s\\/]+')
+      ])),
       watchedOn: new FormControl('', this.watchedOnValidator),
       rating: new FormControl('')
     }, {validator: this.requiredIfFirstFieldFilled('watchedOn', 'rating')});

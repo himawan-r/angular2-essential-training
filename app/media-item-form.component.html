@@ -32,8 +32,14 @@
       <input type="text" name="year" id="year" maxlength="4" formControlName="year">
     </li>
     <li>
+      <label for="movieID">Movie ID</label>
+      <input type="text" name="movieID" id="year" style="width:300px;" formControlName="movieID">
+      <div *ngIf="(form.controls.movieID.errors?.pattern) || (form.controls.movieID.errors?.minlength) || (form.controls.movieID.errors?.maxlength)" class="error">Invalid input, Movie Id should be alphanumeric with between 10-12 word</div>
+    </li>
+    <li>
       <label for="watchedOn">watched On</label>
       <input type="date" name="watchedOn" id="watchedOn" formControlName="watchedOn">
+      <div *ngIf="form.controls.watchedOn.errors?.watchedOnFutureDate" class="error">Date cannot be future date</div>
     </li>
     <li>
       <label for="rating">rating</label>
