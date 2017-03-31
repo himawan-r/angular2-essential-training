@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'mw-media-item-form',
@@ -7,26 +7,25 @@ import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms'
   styleUrls: ['app/media-item-form.component.css']
 })
 export class MediaItemFormComponent {
-  form : FormGroup;
-  fb : FormBuilder;
+  form;
+  constructor(private formBuilder: FormBuilder){}
 
   ngOnInit() {
-    this.fb = new FormBuilder();
-    this.form = this.fb.group({
-      medium: new FormControl('Movies'),
-      name: new FormControl('', Validators.compose([
+    this.form = this.formBuilder.group({
+      medium: this.formBuilder.control('Movies'),
+      name: this.formBuilder.control('', Validators.compose([
         Validators.required,
         Validators.pattern('[\\w\\-\\s\\/]+')
       ])),
-      category: new FormControl(''),
-      year: new FormControl('', this.yearValidator),
-      movieID: new FormControl('', Validators.compose([
+      category: this.formBuilder.control(''),
+      year: this.formBuilder.control('', this.yearValidator),
+      movieID: this.formBuilder.control('', Validators.compose([
         Validators.minLength(10),
         Validators.maxLength(12),
         Validators.pattern('[\\w\\-\\s\\/]+')
       ])),
-      watchedOn: new FormControl('', this.watchedOnValidator),
-      rating: new FormControl('')
+      watchedOn: this.formBuilder.control('', this.watchedOnValidator),
+      rating: this.formBuilder.control('')
     }, {validator: this.requiredIfFirstFieldFilled('watchedOn', 'rating')});
   }
 
