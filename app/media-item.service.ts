@@ -23,6 +23,7 @@ export class MediaItemService {
       year: 2010,
       rating: 2,
       watchedOn: 1294166565384,
+      movieID: 'A1234567890',
       isFavorite: false,
       posters: [
         {imgSrc: './media/firebug1.png', selected: true, isAvailableFullSize : true},
@@ -37,6 +38,7 @@ export class MediaItemService {
       year: 2015,
       rating: 3.5,
       watchedOn: null,
+      movieID: 'A1234567891',
       isFavorite: true,
       posters: [
         {imgSrc: './media/smalltall1.png', selected: true, isAvailableFullSize : true},
@@ -50,6 +52,7 @@ export class MediaItemService {
       year: 2016,
       rating: 4.7,
       watchedOn: null,
+      movieID: 'A1234567892',
       isFavorite: false,
       imgSrc : null
     }, {
@@ -60,6 +63,7 @@ export class MediaItemService {
       year: null,
       rating: 3.2,
       watchedOn: null,
+      movieID: 'A1234567893',
       isFavorite: true,
       imgSrc : null
     }, {
@@ -70,6 +74,7 @@ export class MediaItemService {
       year: 2015,
       rating: 2.7,
       watchedOn: 1457166565384,
+      movieID: 'A1234567894',
       isFavorite: false,
       imgSrc : null
     }
