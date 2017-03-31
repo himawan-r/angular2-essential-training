@@ -1,11 +1,24 @@
 import { Component, Output, EventEmitter } from '@angular/core';
 
+import { MediaItemComponent } from './media-item.component';
 @Component({
   selector: 'mw-media-item-list',
   templateUrl: 'app/media-item-list.component.html',
   styleUrls: ['app/media-item-list.component.css']
 })
 export class MediaItemListComponent {
+  mediaItems;
+
+  constructor(private mediaItemService: MediaItemService) {}
+
+  ngOnInit() {
+    this.mediaItems = this.mediaItemService.get();
+  }
+
+  onMediaItemDelete(mediaItem) {
+    this.mediaItemService.delete(mediaItem);
+  }
+  
   @Output() preview = new EventEmitter();
 
   onMediaItemDelete(mediaItem) { }
@@ -74,4 +87,5 @@ export class MediaItemListComponent {
       imgSrc : null
     }
   ];
+
 }

@@ -1,5 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+
+import { MediaItemService } from './media-item.service';
+import { lookupListToken } from './providers';
 
 @Component({
   selector: 'mw-media-item-form',
@@ -8,7 +11,11 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 })
 export class MediaItemFormComponent {
   form;
-  constructor(private formBuilder: FormBuilder){}
+  
+  constructor(
+    private formBuilder: FormBuilder,
+    private mediaItemService: MediaItemService,
+    @Inject(lookupListToken) public lookupLists) {}
 
   ngOnInit() {
     this.form = this.formBuilder.group({
@@ -30,16 +37,21 @@ export class MediaItemFormComponent {
   }
 
   yearValidator(control) {
-    if(control.value.trim().length === 0) {
+    if (control.value.trim().length === 0) {
       return null;
     }
     let year = parseInt(control.value);
-    let minYear = 1900;
-    let maxYear = 2100;
-    if(year >= minYear && year <= maxYear) {
+    let minYear = 1800;
+    let maxYear = 2500;
+    if (year >= minYear && year <= maxYear) {
       return null;
     } else {
-      return { 'year': true };
+      return {
+        'year': {
+          min: minYear,
+          max: maxYear
+        }
+      };
     }
   }
 
@@ -64,6 +76,6 @@ export class MediaItemFormComponent {
   }
 
   onSubmit(mediaItem) {
-    console.log(mediaItem);
+    this.mediaItemService.add(mediaItem);
   }
 }
