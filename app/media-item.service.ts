@@ -2,12 +2,16 @@ import { ListUtilityService } from "./list-utility.service";
 export class Filter{
   propertyName : string;
   operator : string;
+  type: string;
   value: any;
 }
 
 export class MediaItemService extends ListUtilityService{
   isValid(filter) {
-    return filter.operator.trim() !== "" && filter.value.trim() !== "" && filter.propertyName.trim() !== "";
+    if(filter.type === "string"){
+      filter.value = filter.value.trim();
+    }
+    return filter.operator !== "" && filter.value !== "" && filter.propertyName !== "";
   }
 
   get(filter?: Filter) {

@@ -27,7 +27,6 @@ export class MediaItemListComponent {
 
   onMediaItemFilter(filter){
     var test= this.mediaItemService.get(filter);
-    console.log(test);
     this.mediaItems= test;
   }
 

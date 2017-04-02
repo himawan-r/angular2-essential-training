@@ -16,9 +16,15 @@ export class ListUtilityService{
           if(operator === "startswith") {
             return obj[propertyName].startsWith(value);
           } 
+
+          if(operator === "lessThan") {
+            return obj[propertyName] < value;
+          } 
+
+          if(operator === "greaterThan") {
+            return obj[propertyName] > value;
+          } 
         
       })
   }
-
-  
 }
