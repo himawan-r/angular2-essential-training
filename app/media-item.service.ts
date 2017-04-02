@@ -1,7 +1,22 @@
-export class MediaItemService {
-  get() {
-    return this.mediaItems;
+import { ListUtilityService } from "./list-utility.service";
+export class Filter{
+  propertyName : string;
+  operator : string;
+  value: any;
+}
+
+export class MediaItemService extends ListUtilityService{
+  isValid(filter) {
+    return filter.operator.trim() !== "" && filter.value.trim() !== "" && filter.propertyName.trim() !== "";
   }
+
+  get(filter?: Filter) {
+    if(filter && this.isValid(filter)){
+      return this.filter(this.mediaItems, filter.propertyName, filter.operator, filter.value);
+    }else{
+      return this.mediaItems;
+    }
+  } 
   
   add(mediaItem) {
     this.mediaItems.push(mediaItem);

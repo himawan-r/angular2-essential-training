@@ -13,6 +13,8 @@ import { PosterSwitcherComponent } from './poster-switcher.component';
 import { FullSizeDirective } from './fullsize.directive';
 import { MediaItemService } from './media-item.service';
 import { lookupListToken, lookupLists } from './providers';
+import { ListUtilityService } from './list-utility.service';
+import { MediaItemToolbarComponent } from "./media-item-toolbar.component";
 
 @NgModule({
   imports: [
@@ -28,10 +30,12 @@ import { lookupListToken, lookupLists } from './providers';
     MediaItemFormComponent,
     MediaItemPopupComponent,
     PosterSwitcherComponent,
-    FullSizeDirective
+    FullSizeDirective,
+    MediaItemToolbarComponent
   ],
   providers: [
     MediaItemService,
+    ListUtilityService,
     { provide: lookupListToken, useValue: lookupLists }
   ],
   bootstrap: [
