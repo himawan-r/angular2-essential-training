@@ -81,8 +81,14 @@ export class MockXHRBackend extends ListUtilityService{
       medium: "Series",
       category: "Science Fiction",
       year: 2010,
+      rating: 2,
       watchedOn: 1294166565384,
-      isFavorite: false
+      movieID: 'A1234567890',
+      isFavorite: false,
+      posters: [
+        {imgSrc: './media/firebug1.png', selected: true, isAvailableFullSize : true},
+        {imgSrc: './media/firebug2.png', selected: false, isAvailableFullSize : false}
+      ]
     },
     {
       id: 2,
@@ -90,32 +96,47 @@ export class MockXHRBackend extends ListUtilityService{
       medium: "Movies",
       category: "Comedy",
       year: 2015,
+      rating: 3.5,
       watchedOn: null,
-      isFavorite: true
+      movieID: 'A1234567891',
+      isFavorite: true,
+      posters: [
+        {imgSrc: './media/smalltall1.png', selected: true, isAvailableFullSize : true},
+        {imgSrc: './media/smalltall2.png', selected: false, isAvailableFullSize : true}
+      ]
     }, {
       id: 3,
       name: "The Redemption",
       medium: "Movies",
       category: "Action",
       year: 2016,
+      rating: 4.7,
       watchedOn: null,
-      isFavorite: false
+      movieID: 'A1234567892',
+      isFavorite: false,
+      imgSrc : null
     }, {
       id: 4,
       name: "Hoopers",
       medium: "Series",
       category: "Drama",
       year: null,
+      rating: 3.2,
       watchedOn: null,
-      isFavorite: true
+      movieID: 'A1234567893',
+      isFavorite: true,
+      imgSrc : null
     }, {
       id: 5,
       name: "Happy Joe: Cheery Road",
       medium: "Movies",
       category: "Action",
       year: 2015,
+      rating: 2.7,
       watchedOn: 1457166565384,
-      isFavorite: false
+      movieID: 'A1234567894',
+      isFavorite: false,
+      imgSrc : null
     }
   ];
 }
