@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { ReactiveFormsModule } from '@angular/forms';
+import { HttpModule, XHRBackend } from '@angular/http';
 
 import { AppComponent } from './app.component';
 import { MediaItemComponent } from './media-item.component';
@@ -15,11 +16,13 @@ import { MediaItemService } from './media-item.service';
 import { lookupListToken, lookupLists } from './providers';
 import { ListUtilityService } from './list-utility.service';
 import { MediaItemToolbarComponent } from "./media-item-toolbar.component";
+import { MockXHRBackend } from './mock-xhr-backend';
 
 @NgModule({
   imports: [
     BrowserModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpModule
   ],
   declarations: [
     AppComponent,
@@ -36,7 +39,8 @@ import { MediaItemToolbarComponent } from "./media-item-toolbar.component";
   providers: [
     MediaItemService,
     ListUtilityService,
-    { provide: lookupListToken, useValue: lookupLists }
+    { provide: lookupListToken, useValue: lookupLists },
+    { provide: XHRBackend, useClass: MockXHRBackend }
   ],
   bootstrap: [
     AppComponent

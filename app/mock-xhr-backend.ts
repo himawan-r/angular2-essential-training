@@ -1,9 +1,11 @@
 import { Request, Response, ResponseOptions, RequestMethod } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import { Observer } from 'rxjs/Observer';
+import { ListUtilityService } from "./list-utility.service";
 
-export class MockXHRBackend {
+export class MockXHRBackend extends ListUtilityService{
   constructor() {
+    super();
   }
 
   createConnection(request: Request) {
@@ -12,15 +14,16 @@ export class MockXHRBackend {
       var responseOptions;
       switch (request.method) {
         case RequestMethod.Get:
-          if (request.url.indexOf('mediaitems?medium=') >= 0 || request.url === 'mediaitems') {
-            var medium;
+          if (request.url.indexOf('mediaitems?filter=') >= 0 || request.url === 'mediaitems') {
+            var filter;
             if (request.url.indexOf('?') >= 0) {
-              medium = request.url.split('=')[1];
-              if (medium === 'undefined') medium = '';
+              filter = request.url.split('=')[1];
+              if (filter === 'undefined') filter = '';
             }
             var mediaItems;
-            if (medium) {
-              mediaItems = this._mediaItems.filter(mediaItem => mediaItem.medium === medium);
+            if (filter) {
+              filter = JSON.parse(decodeURIComponent(filter));
+              mediaItems = this.filter(this._mediaItems, filter.propertyName, filter.operator, filter.value);
             } else {
               mediaItems = this._mediaItems;
             }

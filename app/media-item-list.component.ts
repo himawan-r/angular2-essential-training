@@ -8,17 +8,28 @@ import { MediaItemService } from './media-item.service';
   styleUrls: ['app/media-item-list.component.css']
 })
 export class MediaItemListComponent {
-  mediaItems;
+  medium = '';
+  mediaItems = [];
   @Output() preview = new EventEmitter();
 
   constructor(private mediaItemService: MediaItemService) {}
 
   ngOnInit() {
-    this.mediaItems = this.mediaItemService.get();
+    this.getMediaItems();
   }
 
   onMediaItemDelete(mediaItem) {
-    this.mediaItemService.delete(mediaItem);
+    this.mediaItemService.delete(mediaItem)
+      .subscribe(() => {
+        this.getMediaItems();
+      });
+  }
+  
+  getMediaItems(filter?) {
+    this.mediaItemService.get(filter)
+      .subscribe(mediaItems => {
+        this.mediaItems = mediaItems;
+      });
   }
   
   onMediaItemPreview(mediaItem) {
@@ -26,8 +37,7 @@ export class MediaItemListComponent {
   }
 
   onMediaItemFilter(filter){
-    var test= this.mediaItemService.get(filter);
-    this.mediaItems= test;
+    this.getMediaItems(filter);
   }
 
 }

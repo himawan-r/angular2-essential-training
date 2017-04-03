@@ -1,4 +1,7 @@
-import { ListUtilityService } from "./list-utility.service";
+import { Injectable } from '@angular/core';
+import { Http, URLSearchParams } from '@angular/http';
+import 'rxjs/add/operator/map';
+
 export class Filter{
   propertyName : string;
   operator : string;
@@ -6,96 +9,36 @@ export class Filter{
   value: any;
 }
 
-export class MediaItemService extends ListUtilityService{
+@Injectable()
+export class MediaItemService{
+  
+  constructor(private http: Http) {}
+
   isValid(filter) {
     if(filter.type === "string"){
       filter.value = filter.value.trim();
     }
-    return filter.operator !== "" && filter.value !== "" && filter.propertyName !== "";
+    return filter.operator !== "" && filter.value && filter.value !== "" && filter.propertyName !== "";
   }
 
   get(filter?: Filter) {
+    let searchParams = new URLSearchParams();
     if(filter && this.isValid(filter)){
-      return this.filter(this.mediaItems, filter.propertyName, filter.operator, filter.value);
-    }else{
-      return this.mediaItems;
+      searchParams.append('filter', JSON.stringify(filter));
     }
-  } 
+    return this.http.get('mediaitems', { search: searchParams })
+      .map(response => {
+        return response.json().mediaItems;
+      });
+  }
   
   add(mediaItem) {
-    this.mediaItems.push(mediaItem);
+    return this.http.post('mediaitems', mediaItem)
+      .map(response => {});
   }
   
   delete(mediaItem) {
-    let index = this.mediaItems.indexOf(mediaItem);
-    if(index >= 0) {
-      this.mediaItems.splice(index, 1);
-    }
+    return this.http.delete(`mediaitems/${mediaItem.id}`)
+      .map(response => {});
   }
-
-  mediaItems = [
-    {
-      id: 1,
-      name: "Firebug",
-      medium: "Series",
-      category: "Science Fiction",
-      year: 2010,
-      rating: 2,
-      watchedOn: 1294166565384,
-      movieID: 'A1234567890',
-      isFavorite: false,
-      posters: [
-        {imgSrc: './media/firebug1.png', selected: true, isAvailableFullSize : true},
-        {imgSrc: './media/firebug2.png', selected: false, isAvailableFullSize : false}
-      ]
-    },
-    {
-      id: 2,
-      name: "The Small Tall",
-      medium: "Movies",
-      category: "Comedy",
-      year: 2015,
-      rating: 3.5,
-      watchedOn: null,
-      movieID: 'A1234567891',
-      isFavorite: true,
-      posters: [
-        {imgSrc: './media/smalltall1.png', selected: true, isAvailableFullSize : true},
-        {imgSrc: './media/smalltall2.png', selected: false, isAvailableFullSize : true}
-      ]
-    }, {
-      id: 3,
-      name: "The Redemption",
-      medium: "Movies",
-      category: "Action",
-      year: 2016,
-      rating: 4.7,
-      watchedOn: null,
-      movieID: 'A1234567892',
-      isFavorite: false,
-      imgSrc : null
-    }, {
-      id: 4,
-      name: "Hoopers",
-      medium: "Series",
-      category: "Drama",
-      year: null,
-      rating: 3.2,
-      watchedOn: null,
-      movieID: 'A1234567893',
-      isFavorite: true,
-      imgSrc : null
-    }, {
-      id: 5,
-      name: "Happy Joe: Cheery Road",
-      medium: "Movies",
-      category: "Action",
-      year: 2015,
-      rating: 2.7,
-      watchedOn: 1457166565384,
-      movieID: 'A1234567894',
-      isFavorite: false,
-      imgSrc : null
-    }
-  ];
 }
