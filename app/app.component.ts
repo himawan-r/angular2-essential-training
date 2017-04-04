@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
+import { YoloNavigationComponent } from './navigation/yolo-navigation.component';
 
 @Component({
-  selector: 'app',
-  template: '<h1>My App</h1>'
+  selector: 'yolo-app',
+  templateUrl: 'app/app.component.html'
 })
 export class AppComponent {}
