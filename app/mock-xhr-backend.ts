@@ -25,7 +25,7 @@ export class MockXHRBackend extends ListUtilityService{
             } else if (medium && medium[1] !== "") {
               mediaItems = this._mediaItems.filter(mediaItem => mediaItem.medium === medium[1]);
             }else if (filter) {
-              filter = JSON.parse(decodeURIComponent(filter));
+              filter = JSON.parse(decodeURIComponent(filter[1]));
               mediaItems = this.filter(this._mediaItems, filter.propertyName, filter.operator, filter.value);
             } else {
               mediaItems = this._mediaItems;
