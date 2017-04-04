@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, Output, EventEmitter } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-
+import { MediaItemComponent } from './media-item.component';
 import { MediaItemService } from './media-item.service';
 
 @Component({
@@ -12,6 +12,7 @@ export class MediaItemListComponent {
   medium = '';
   mediaItems = [];
   paramsSubscription;
+  @Output() preview = new EventEmitter();
 
   constructor(
     private mediaItemService: MediaItemService,
@@ -35,15 +36,23 @@ export class MediaItemListComponent {
   onMediaItemDelete(mediaItem) {
     this.mediaItemService.delete(mediaItem)
       .subscribe(() => {
-        this.getMediaItems(this.medium);
       });
   }
-
-  getMediaItems(medium) {
+  
+  getMediaItems(medium, filter?) {
     this.medium = medium;
-    this.mediaItemService.get(medium)
+    this.mediaItemService.get(medium, filter)
       .subscribe(mediaItems => {
         this.mediaItems = mediaItems;
       });
   }
+  
+  onMediaItemPreview(mediaItem) {
+    this.preview.emit(mediaItem);
+  }
+
+  onMediaItemFilter(filter){
+    this.getMediaItems(this.medium, filter);
+  }
+
 }

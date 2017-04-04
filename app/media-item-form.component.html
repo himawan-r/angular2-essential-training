@@ -32,12 +32,34 @@
     <li>
       <label for="year">Year</label>
       <input type="text" name="year" id="year" maxlength="4" formControlName="year">
-      <div *ngIf="form.controls.year.errors?.year" class="error">
+	  <div *ngIf="form.controls.year.errors?.year" class="error">
         Must be between 
         {{form.controls.year.errors?.year.min}} 
         and 
         {{form.controls.year.errors?.year.max}}
       </div>
+    </li>
+    <li>
+      <label for="movieID">Movie ID</label>
+      <input type="text" name="movieID" id="year" style="width:300px;" formControlName="movieID">
+      <div *ngIf="(form.controls.movieID.errors?.pattern) || (form.controls.movieID.errors?.minlength) || (form.controls.movieID.errors?.maxlength)" class="error">Invalid input, Movie Id should be alphanumeric with between 10-12 word</div>
+    </li>
+    <li>
+      <label for="watchedOn">watched On</label>
+      <input type="date" name="watchedOn" id="watchedOn" formControlName="watchedOn">
+      <div *ngIf="form.controls.watchedOn.errors?.watchedOnFutureDate" class="error">Date cannot be future date</div>
+    </li>
+    <li>
+      <label for="rating">rating</label>
+      <select name="rating" id="rating" formControlName="rating">
+        <option value=""></option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+      </select>
+      <div *ngIf="form.hasError('watchedOnRequired')" class="error">Please give the movie a rating since you're already watch it</div>
     </li>
   </ul>
   <button type="submit" [disabled]="!form.valid">Save</button>

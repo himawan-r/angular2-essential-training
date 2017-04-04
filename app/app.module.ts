@@ -9,8 +9,13 @@ import { MediaItemListComponent } from './media-item-list.component';
 import { FavoriteDirective } from './favorite.directive';
 import { CategoryListPipe } from './category-list.pipe';
 import { MediaItemFormComponent } from './media-item-form.component';
+import { MediaItemPopupComponent } from './media-item-popup.component';
+import { PosterSwitcherComponent } from './poster-switcher.component';
+import { FullSizeDirective } from './fullsize.directive';
 import { MediaItemService } from './media-item.service';
 import { lookupListToken, lookupLists } from './providers';
+import { ListUtilityService } from './list-utility.service';
+import { MediaItemToolbarComponent } from "./media-item-toolbar.component";
 import { MockXHRBackend } from './mock-xhr-backend';
 import { routing } from './app.routing';
 
@@ -27,10 +32,15 @@ import { routing } from './app.routing';
     MediaItemListComponent,
     FavoriteDirective,
     CategoryListPipe,
-    MediaItemFormComponent
+    MediaItemFormComponent,
+    MediaItemPopupComponent,
+    PosterSwitcherComponent,
+    FullSizeDirective,
+    MediaItemToolbarComponent
   ],
   providers: [
     MediaItemService,
+    ListUtilityService,
     { provide: lookupListToken, useValue: lookupLists },
     { provide: XHRBackend, useClass: MockXHRBackend }
   ],
