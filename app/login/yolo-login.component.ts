@@ -1,25 +1,26 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { AuthenticationService } from '../service/auth.service';
 
 @Component({
-  selector: 'yolo-registration',
-  templateUrl: 'app/registration/yolo-registration.component.html',
-  styleUrls: ['app/registration/yolo-registration.component.css']
+  selector: 'yolo-login',
+  templateUrl: 'app/login/yolo-login.component.html',
+  styleUrls: ['app/login/yolo-login.component.css']
 })
-export class YoloRegistrationComponent{
+export class YoloLoginComponent{
     form;
-    constructor(private formBuilder:FormBuilder) {}
+    constructor(private formBuilder:FormBuilder, private authenticationService: AuthenticationService) {}
 
     ngOnInit() {
       this.form = this.formBuilder.group({
           username : this.formBuilder.control('', Validators.required), 
-          password : this.formBuilder.control('', Validators.required),
-          confirm : this.formBuilder.control('', Validators.required)
-      }, {validator: this.missMatchPassword()});
+          password : this.formBuilder.control('', Validators.required)
+      });
     }
 
     onSubmit(form) {
         console.log(form);
+        this.authenticationService.login(form.username, form.password);
     }
 
     missMatchPassword() {
