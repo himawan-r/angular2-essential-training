@@ -11,7 +11,7 @@ export class Filter{
 
 @Injectable()
 export class MediaItemService{
-  
+  previewedMediaItem = null;
   constructor(private http: Http) {}
 
   isValid(filter) {
@@ -42,4 +42,14 @@ export class MediaItemService{
     return this.http.delete(`mediaitems/${mediaItem.id}`)
       .map(response => {});
   }
+
+  setPreview(mediaItem){
+    this.previewedMediaItem = mediaItem;
+    return this.previewedMediaItem;
+  }
+
+  getPreview(){
+    return this.previewedMediaItem;
+  }
+
 }

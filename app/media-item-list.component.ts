@@ -36,6 +36,7 @@ export class MediaItemListComponent {
   onMediaItemDelete(mediaItem) {
     this.mediaItemService.delete(mediaItem)
       .subscribe(() => {
+        this.getMediaItems(this.medium);
       });
   }
   
@@ -45,10 +46,6 @@ export class MediaItemListComponent {
       .subscribe(mediaItems => {
         this.mediaItems = mediaItems;
       });
-  }
-  
-  onMediaItemPreview(mediaItem) {
-    this.preview.emit(mediaItem);
   }
 
   onMediaItemFilter(filter){

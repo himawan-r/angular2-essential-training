@@ -1,4 +1,5 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { MediaItemService } from './media-item.service';
 
 @Component({
   selector: 'mw-media-item-popup',
@@ -6,19 +7,18 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
   styleUrls: ['app/media-item-popup.component.css']
 })
 export class MediaItemPopupComponent{
-  @Input() mediaItem;
-  @Output() close = new EventEmitter();
+  mediaItem = null;
+  constructor(private mediaItemService: MediaItemService) {}
 
   onClose() {
-    console.log("close");
-    this.close.emit();
+    this.mediaItemService.setPreview(null);
   }
 
   isClosed() {
-    return this.mediaItem ? false : true;
+    return this.mediaItemService.getPreview() ? false : true;
   }
 
   getPosterList() {
-    return this.mediaItem && this.mediaItem.posters ? this.mediaItem.posters : [];
+    return this.mediaItemService.getPreview() && this.mediaItemService.getPreview().posters ? this.mediaItemService.getPreview().posters : [];
   }
 }
