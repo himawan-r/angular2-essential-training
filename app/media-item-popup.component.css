@@ -14,3 +14,11 @@
   color: deepskyblue;
   cursor: pointer;
 }
+
+.pull-right{
+  float:right;
+}
+
+.content{
+  margin: 20px 5px 5px 5px;
+}
