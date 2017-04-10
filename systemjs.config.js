@@ -9,13 +9,15 @@
     'app': 'app', // 'dist',
 
     '@angular': 'node_modules/@angular',
-    'rxjs': 'node_modules/rxjs'
+    'rxjs': 'node_modules/rxjs',
+    'lodash': 'node_modules/lodash'
   };
 
   // packages tells the System loader how to load when no filename and/or no extension
   var packages = {
     'app': { main: 'main.js', defaultExtension: 'js' },
-    'rxjs': { defaultExtension: 'js' }
+    'rxjs': { defaultExtension: 'js' },
+    'lodash': { main: 'lodash.js', defaultExtension: 'js'}
   };
 
   var ngPackageNames = [

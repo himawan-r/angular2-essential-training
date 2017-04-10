@@ -20,18 +20,8 @@ export class YoloLoginComponent{
 
     onSubmit(form) {
         console.log(form);
-        this.authenticationService.login(form.username, form.password);
+        var test = this.authenticationService.login(form.username, form.password);
+        console.log(test);
     }
 
-    missMatchPassword() {
-      return (group: FormGroup): {[key: string]: any} => {
-        let password = group.controls.password;
-        let confirm = group.controls.confirm;
-        if (password.value !== confirm.value && password.value.trim() !== "" && confirm.value.trim() !== "") {
-          return {
-            'passwordMissMatch': true
-          };
-        }
-      }
-    }
 }

@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { AbstractControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
+
+import { AuthenticationService } from '../service/auth.service'
 
 @Component({
   selector: 'yolo-registration',
@@ -8,29 +10,32 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 })
 export class YoloRegistrationComponent{
     form;
-    constructor(private formBuilder:FormBuilder) {}
+    constructor(private formBuilder:FormBuilder, private authService: AuthenticationService) {}
 
     ngOnInit() {
       this.form = this.formBuilder.group({
           username : this.formBuilder.control('', Validators.required), 
           password : this.formBuilder.control('', Validators.required),
           confirm : this.formBuilder.control('', Validators.required)
-      }, {validator: this.missMatchPassword()});
+      }, {validator: this.missMatchPassword('password', 'confirm')});
     }
 
     onSubmit(form) {
-        console.log(form);
+      var test =  this.authService.register(form);
+      console.log(test);
     }
 
-    missMatchPassword() {
+    missMatchPassword(key1, key2) {
       return (group: FormGroup): {[key: string]: any} => {
-        let password = group.controls.password;
-        let confirm = group.controls.confirm;
-        if (password.value !== confirm.value && password.value.trim() !== "" && confirm.value.trim() !== "") {
-          return {
-            'passwordMissMatch': true
-          };
-        }
+          let password = group.controls[key1];
+          let confirm =group.controls[key2];
+          if (password && confirm && password.value !== confirm.value && password.value.trim() !== "" && confirm.value.trim() !== "") {
+            return {
+              'passwordMissMatch': true
+            };
+          }else {
+            return null;
+          }
       }
     }
 }
