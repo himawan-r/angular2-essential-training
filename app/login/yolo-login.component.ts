@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AuthenticationService } from '../service/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'yolo-login',
@@ -9,7 +10,7 @@ import { AuthenticationService } from '../service/auth.service';
 })
 export class YoloLoginComponent{
     form;
-    constructor(private formBuilder:FormBuilder, private authenticationService: AuthenticationService) {}
+    constructor(private router: Router, private formBuilder:FormBuilder, private authenticationService: AuthenticationService) {}
 
     ngOnInit() {
       this.form = this.formBuilder.group({
@@ -19,9 +20,10 @@ export class YoloLoginComponent{
     }
 
     onSubmit(form) {
-        console.log(form);
-        var test = this.authenticationService.login(form.username, form.password);
-        console.log(test);
+        let test = this.authenticationService.login(form.username, form.password);
+        if(test && test.status === 200){
+            this.router.navigate(['/','list']);
+        }
     }
 
 }

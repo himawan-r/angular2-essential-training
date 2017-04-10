@@ -8,7 +8,9 @@ import { YoloItemListComponent } from './item/yolo-item-list.component';
 import { YoloItemFormComponent } from './item/yolo-item-form.component';
 import { YoloRegistrationComponent } from './registration/yolo-registration.component';
 import { YoloLoginComponent } from './login/yolo-login.component';
+import { YoloPopupComponent } from './popup/yolo-popup.component';
 import { AuthenticationService } from './service/auth.service';
+import { PopupService } from './service/common-popup.service';
 import { lookupListToken, lookupLists} from './common/constant';
 import { routing } from './app.routing';
 
@@ -25,10 +27,12 @@ import { routing } from './app.routing';
     YoloItemListComponent,
     YoloItemFormComponent,
     YoloRegistrationComponent,
-    YoloLoginComponent
+    YoloLoginComponent,
+    YoloPopupComponent
   ],
   providers: [
     AuthenticationService,
+    PopupService,
     { provide: lookupListToken, useValue: lookupLists}
   ],
   bootstrap: [

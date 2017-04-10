@@ -4,11 +4,14 @@
             <li *ngFor="let lookup of lookupLists.menu">
                 <a routerLink="{{lookup.href}}">{{lookup.text}}</a>
             </li>
-            <li class="pull-right"> 
+            <li class="pull-right" [ngClass]="{'hidden-list': isLoggedIn}"> 
                 <a routerLink="/login">Login</a> 
             </li>
-            <li class="pull-right"> 
+            <li class="pull-right" [ngClass]="{'hidden-list': isLoggedIn}"> 
                 <a routerLink="/register">Register</a> 
+            </li>
+            <li class="pull-right" [ngClass]="{'hidden-list': !isLoggedIn}"> 
+                <a (click)="onLogOut()">Logout</a> 
             </li>
         </ul>
     </div>
